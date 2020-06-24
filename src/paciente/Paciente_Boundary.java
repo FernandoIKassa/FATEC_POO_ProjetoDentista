@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -24,6 +26,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Paciente_Boundary extends Application {
+	private TableView table = new TableView();
+	
 	public static void main(String[] args){
 		launch(args);
 	}
@@ -36,14 +40,47 @@ public class Paciente_Boundary extends Application {
 		
 		VBox vbox = new VBox();
 		HBox hbox = new HBox();
+		HBox hboxBtn = new HBox();
+		
 		Label labelMaterial = new Label("Material");
 		TextField fieldMaterial = new TextField();
 		
 		Label labelQuantidade = new Label("Quantidade");
 		TextField fieldQuantidade = new TextField();
-		ObservableList<String> options =
+		ObservableList<String> tipoQuantidade =
 				FXCollections.observableArrayList("mg", "unid", "ml", "lt");
-		final ComboBox quantiComboBox = new ComboBox(options);
+		final ComboBox quantiComboBox = new ComboBox(tipoQuantidade);
+		
+		Label labelTipoMaterial = new Label("Tipo material");
+		ObservableList<String> tipoMaterial =
+				FXCollections.observableArrayList("remedio", "utensilio", "descartavel", "maquina");
+		final ComboBox tipoMaterialComboBox = new ComboBox(tipoMaterial);
+		
+		TableColumn primeira = new TableColumn("Material");
+		TableColumn segunda = new TableColumn("Quantidade");
+		TableColumn terceira = new TableColumn("tipoQuantidade");
+		TableColumn quarta = new TableColumn("Tipo material");
+		
+		table.setEditable(true);
+		
+		table.getColumns().addAll(primeira, segunda, terceira, quarta);
+		
+		Button btnSalvar = new Button();
+		btnSalvar.setText("Salvar");
+		Button btnExcluir = new Button();
+		btnExcluir.setText("Excluir");
+		
+		btnSalvar.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle (ActionEvent e) {
+				btnSalvar.setText("Salvado!");
+			}
+		});
+		
+		btnExcluir.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle (ActionEvent e) {
+				btnExcluir.setText("Salvado!");
+			}
+		});
 		
 		
 		vbox.getChildren().add(labelMaterial);		
@@ -51,10 +88,18 @@ public class Paciente_Boundary extends Application {
 		
 		vbox.getChildren().add(labelQuantidade);		
 		hbox.getChildren().addAll(fieldQuantidade, quantiComboBox);
-		
 		vbox.getChildren().add(hbox);
 		
+		vbox.getChildren().add(labelTipoMaterial);
+		vbox.getChildren().add(tipoMaterialComboBox);
+		vbox.getChildren().add(table);
+		
+		hboxBtn.getChildren().add(btnSalvar);
+		hboxBtn.getChildren().add(btnExcluir);
+		//vbox.getChildren().add(hboxBtn);
+		
 		border.setCenter(vbox);
+		border.setBottom(hboxBtn);
 		
 		
 		
