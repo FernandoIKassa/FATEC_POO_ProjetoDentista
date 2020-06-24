@@ -49,7 +49,7 @@ public class Login_Boundary  extends Application  {
 			@Override
 			public void handle(ActionEvent e) {
 				actiontarget.setFill(Color.FIREBRICK);
-				actiontarget.setText("Sign in button pressed");
+				actiontarget.setText("Botao login pressionado");
 				
 			}
 		});
