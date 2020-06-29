@@ -113,7 +113,9 @@ public class Material_Boundary extends Application  {
 
 		btnExcluir.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle (ActionEvent e) {
-				btnExcluir.setText("Excluído!");
+				Material_Entity mat = new Material_Entity();
+				mat = (Material_Entity) table.getSelectionModel().getSelectedItem();
+				materialControle.removeMaterial(mat);				 
 			}
 		});
 

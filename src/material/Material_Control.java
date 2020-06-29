@@ -4,6 +4,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 
 public class Material_Control {
 	
@@ -13,8 +14,9 @@ public class Material_Control {
 		lista.add(material);
 	}
 	
-	public void removeMaterial() {
-		
+	public void removeMaterial(Material_Entity material) {
+		lista.remove(material);
+		System.out.println("ASDFASDFASDF");
 	}
 	
 	public Material_Entity pesquisaMaterial(Material_Entity material) {
