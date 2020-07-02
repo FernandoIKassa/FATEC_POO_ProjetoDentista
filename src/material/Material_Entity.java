@@ -1,6 +1,7 @@
 package material;
 
 public class Material_Entity {
+	private int codigoMaterial;
 	private String nomeMaterial;
 	private int quantidade;
 	private String tipoQuantidade;
@@ -42,6 +43,14 @@ public class Material_Entity {
 
 	public void setTipoQuantidade(String tipoQuantidade) {
 		this.tipoQuantidade = tipoQuantidade;
+	}
+
+	public int getCodigoMaterial() {
+		return codigoMaterial;
+	}
+
+	public void setCodigoMaterial(int codigoMaterial) {
+		this.codigoMaterial = codigoMaterial;
 	}
 
 }

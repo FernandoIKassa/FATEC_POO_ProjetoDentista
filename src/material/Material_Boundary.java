@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 
 public class Material_Boundary extends Application  {
 
+	int aux;
+	
 	Label labelMaterial = new Label("Material");
 	Label labelTipoMaterial = new Label("Tipo material");
 	Label labelQuantidade = new Label("Quantidade");
@@ -32,6 +34,7 @@ public class Material_Boundary extends Application  {
 	TextField fieldQuantidade = new TextField();
 
 	Button btnSalvar = new Button();
+	Button btnUpdate = new Button();
 	Button btnExcluir = new Button();
 	Button btnPesquisar = new Button();
 
@@ -102,12 +105,24 @@ public class Material_Boundary extends Application  {
 
 		//-----------------------------------------------------------------------------------------------------------------
 		btnSalvar.setText("Salvar");
+		btnUpdate.setText("Update");
 		btnExcluir.setText("Excluir");
 		btnPesquisar.setText("Pesquisar");
 
 		btnSalvar.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle (ActionEvent e) {
 				materialControle.adicionarMaterial(boundaryParaEntidade());
+			}
+		});
+		
+		btnUpdate.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle (ActionEvent e) {
+				Material_Entity mat = new Material_Entity();
+				
+				mat = boundaryParaEntidade();
+				mat.setCodigoMaterial(aux);
+				materialControle.updateMaterial(mat);
+				System.out.println(aux);
 			}
 		});
 
@@ -140,7 +155,8 @@ public class Material_Boundary extends Application  {
 		vbox.getChildren().add(table);
 
 
-		hboxBtn.getChildren().add(btnPesquisar);
+		//hboxBtn.getChildren().add(btnPesquisar);
+		hboxBtn.getChildren().add(btnUpdate);
 		hboxBtn.getChildren().add(btnSalvar);
 		hboxBtn.getChildren().add(btnExcluir);
 		//vbox.getChildren().add(hboxBtn);
@@ -156,8 +172,9 @@ public class Material_Boundary extends Application  {
 		if (mat != null) {
 			fieldMaterial.setText(String.valueOf(mat.getNomeMaterial()));
 			fieldQuantidade.setText(String.valueOf(mat.getQuantidade()));
-			tipoMaterialComboBox.setPromptText(mat.getTipo());
-			quantiComboBox.setPromptText(mat.getTipoQuantidade());
+			tipoMaterialComboBox.getSelectionModel().select(mat.getTipo());
+			quantiComboBox.getSelectionModel().select(mat.getTipoQuantidade());
+			aux = mat.getCodigoMaterial();
 		}
 
 	}
